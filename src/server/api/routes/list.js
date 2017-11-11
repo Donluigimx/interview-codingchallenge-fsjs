@@ -11,9 +11,11 @@ module.exports = function(app) {
         .delete(listController.remove_list);
 
     app.route('/lists/:listId/items')
-        .post(listController.add_item_on_list);
+        .get(listController.get_items_in_list)
+        .post(listController.add_item_in_list);
 
     app.route('/lists/:listId/items/:itemId')
-        .delete(listController.remove_item_on_list)
-        .put(listController.update_item_on_list);
+        .get(listController.get_item_in_list)
+        .put(listController.update_item_in_list)
+        .delete(listController.remove_item_in_list);
 };
