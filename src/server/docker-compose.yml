@@ -1,0 +1,12 @@
+version: '2'
+services:
+  api:
+    image: node_api_itexico:latest
+    ports:
+      - "8081:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/node/app
+  db:
+    image: mongo:3

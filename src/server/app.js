@@ -1,18 +1,26 @@
-var express = require('express');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 
-var index = require('./routes/index');
-
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', index);
+// load mongodb models
+const List = require('./api/models/list');
+
+// mongodb connection
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://db/iTexico_app');
+
+// list routes
+const list = require('./api/routes/list');
+list(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
