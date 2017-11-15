@@ -50,7 +50,7 @@ describe('Lists', () => {
     });
 
     describe('/POST Lists', () => {
-        it('it should create an item', done => {
+        it('it should create a list', done => {
             const data = {
                 name: 'Test'
             };
@@ -81,6 +81,35 @@ describe('Lists', () => {
                     res.body.should.have.property('errors');
                     res.body.errors.should.have.property('name');
                     done();
+                });
+        });
+    });
+    describe('/POST Items', () => {
+        it('it should create an item on a list', done => {
+            const data = {
+                name: 'Test'
+            };
+            chai.request(app)
+                .post('/lists')
+                .set('Cookie', 'auth=auth')
+                .send(data)
+                .end((err, res) => {
+                    res.should.have.status(201);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('_id');
+                    const itemData = {
+                        item: 'Custom Item'
+                    }
+                    chai.request(app)
+                        .post(`/lists/${res.body._id}/items`)
+                        .set('Cookie', 'auth=auth')
+                        .send(itemData)
+                        .end((itemErr, itemRes) => {
+                            itemRes.should.have.status(200);
+                            itemRes.body.should.be.a('object');
+                            itemRes.body.items.length.should.be.eql(1);
+                            done();
+                        });
                 });
         });
     });
