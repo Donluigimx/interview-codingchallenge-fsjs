@@ -1,8 +1,13 @@
-<mat-list>
-  <mat-list-item> Pepper </mat-list-item>
-  <mat-list-item> Salt </mat-list-item>
-  <mat-list-item> Paprika </mat-list-item>
-  <button mat-mini-fab class="example-fab">
-    <mat-icon>add</mat-icon>
-  </button>
- </mat-list>
+<mat-sidenav-container>
+  <mat-nav-list>  
+      <mat-list-item> Pepper </mat-list-item>
+      <mat-list-item> Salt </mat-list-item>
+      <mat-list-item> Paprika </mat-list-item>
+      <button mat-mini-fab class="example-fab">
+        <mat-icon (click)="sidenav.toggle()">add</mat-icon>
+      </button>
+  </mat-nav-list>
+  <mat-sidenav #sidenav mode="side" position="end">
+    <p>CHIDO</p>
+  </mat-sidenav>
+</mat-sidenav-container>

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatListModule, MatButtonModule, MatIconModule, MatSidenavModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { ListsComponent } from './lists/lists.component';
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
